@@ -1,7 +1,11 @@
 from __future__ import annotations
 from Classification.Performance.Performance import Performance
-from Classification.Performance.ClassificationPerformance import ClassificationPerformance
-from Classification.Performance.DetailedClassificationPerformance import DetailedClassificationPerformance
+from Classification.Performance.ClassificationPerformance import (
+    ClassificationPerformance,
+)
+from Classification.Performance.DetailedClassificationPerformance import (
+    DetailedClassificationPerformance,
+)
 import math
 
 
@@ -40,7 +44,7 @@ class ExperimentPerformance:
             String input.
         """
         self.__contains_details = False
-        inputFile = open(fileName, "r", encoding='utf8')
+        inputFile = open(fileName, "r", encoding="utf8")
         lines = inputFile.readlines()
         inputFile.close()
         for line in lines:
@@ -169,7 +173,9 @@ class ExperimentPerformance:
         sum_error_rate = 0
         average_performance = self.meanPerformance()
         for performance in self.__results:
-            sum_error_rate += math.pow(performance.getErrorRate() - average_performance.getErrorRate(), 2)
+            sum_error_rate += math.pow(
+                performance.getErrorRate() - average_performance.getErrorRate(), 2
+            )
         return Performance(math.sqrt(sum_error_rate / (len(self.__results) - 1)))
 
     def standardDeviationClassificationPerformance(self) -> ClassificationPerformance:
@@ -188,9 +194,19 @@ class ExperimentPerformance:
         sum_error_rate = 0
         average_classification_performance = self.meanClassificationPerformance()
         for performance in self.__results:
-            sum_accuracy += math.pow(performance.getAccuracy() - average_classification_performance.getAccuracy(), 2)
-            sum_error_rate += math.pow(performance.getErrorRate() - average_classification_performance.getErrorRate(), 2)
-        return ClassificationPerformance(math.sqrt(sum_accuracy / (len(self.__results) - 1)))
+            sum_accuracy += math.pow(
+                performance.getAccuracy()
+                - average_classification_performance.getAccuracy(),
+                2,
+            )
+            sum_error_rate += math.pow(
+                performance.getErrorRate()
+                - average_classification_performance.getErrorRate(),
+                2,
+            )
+        return ClassificationPerformance(
+            math.sqrt(sum_accuracy / (len(self.__results) - 1))
+        )
 
     def isBetter(self, experimentPerformance: ExperimentPerformance) -> bool:
         """
