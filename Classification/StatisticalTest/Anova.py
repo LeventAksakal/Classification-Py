@@ -1,5 +1,5 @@
 from typing import List
-from MultivariateTest import MultivariateTest
+from Classification.StatisticalTest.MultivariateTest import MultivariateTest
 from Classification.Performance.ExperimentPerformance import ExperimentPerformance
 
 
@@ -17,9 +17,9 @@ class Anova(MultivariateTest):
         """
         This method calculates an F score with ANOVA by comparing the performance results
         of different classifiers on various datasets.
-        
+
         Args: List of experiment performances
-        
+
         Returns: Calculated F score
         """
         total_samples = sum(

@@ -1,5 +1,5 @@
 from typing import List
-from MultivariateTest import MultivariateTest
+from Classification.StatisticalTest.MultivariateTest import MultivariateTest
 from Classification.Performance.ExperimentPerformance import ExperimentPerformance
 
 
